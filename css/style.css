@@ -1,3 +1,8 @@
+*{
+    border: black solid 1px;
+}
+
+
 .wrapper{
     margin: 2vh auto;
     position: relative;
@@ -54,9 +59,18 @@
     display: none;
 }
 
+.navBtn{
+    object-fit: scale-down;
+    width: 7vw;
+    position: fixed;
+}
 
-
-
+.prevBtn{
+    left: 2vw;
+}
+.nextBtn{
+    right: 2vw;
+}
 
 
 

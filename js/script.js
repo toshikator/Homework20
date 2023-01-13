@@ -40,30 +40,33 @@
     console.log(imgDB);
 
     document.addEventListener('click',(event)=>{
-        // console.log('lolo');
+        console.log(event);
         // console.log(event.target);
 
-        if (event.target.classList.contains(classForImages) || event.target.classList.contains(classForBlur)){
-            // console.log('koko');
-            blurDiv.classList.toggle('hyde');
-            divToShowIMG.classList.toggle('hyde');
-            // console.log(event.target.src);
-            imgShowedBig.setAttribute('src',event.target.src);
+        if (event.target.classList.contains(classForImages)) {
+            // console.log(event);
+            blurDiv.classList.remove('hyde');
+            divToShowIMG.classList.remove('hyde');
+            imgShowedBig.setAttribute('src', event.target.src);
             const leftButton = document.createElement("img");
             const rightButton = document.createElement("img");
             leftButton.src = './icon/prev.png';
-            leftButton.style.left = '2vw';
+            leftButton.classList.add('prevBtn');
             rightButton.src = './icon/next.png';
-            rightButton.style.right = '2vw';
-
-
-            leftButton.style.position = 'fixed';
-            rightButton.style.position = 'fixed';
-
-            // leftButton.style.order = 0;
+            rightButton.classList.add('nextBtn');
+            leftButton.classList.add('navBtn');
+            rightButton.classList.add('navBtn');
 
             blurDiv.appendChild(leftButton);
             blurDiv.appendChild(rightButton);
+        } else if(event.target.classList.contains('navBtn')){
+            if(event.pageX < 300){
+                console.log(imgShowedBig);
+                console.log( imgShowedBig.getAttribute('src'))
+            }
+        } else {
+            blurDiv.classList.add('hyde');
+            divToShowIMG.classList.add('hyde');
         }
 
     });
