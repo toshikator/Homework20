@@ -38,11 +38,11 @@
         //TODO add to #imgList 'click' eventListener
     }
 
-    console.log(imgDB);
+    // console.log(imgDB);
 
     document.addEventListener('click',(event)=>{
-        console.log(event);
-        // console.log(event.target);
+        // console.log(event);
+        console.log(event.target);
 
         if (event.target.classList.contains(classForImages)) {
             // console.log(event);
@@ -93,6 +93,8 @@
         } else {
             blurDiv.classList.add('hyde');
             divToShowIMG.classList.add('hyde');
+            document.querySelector('.bigMode').classList.add('imagesLine');
+            document.querySelector('.bigMode').classList.remove('bigMode');
         }
 
     });
