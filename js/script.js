@@ -13,15 +13,16 @@
         './img/11.jpg',
     ];
     const classForImages = 'imagesLine';
-    const classForBlur = 'alert_zone';
+    // const classForBlur = 'alert_zone';
     // const classForBigImg = 'imgContent';
 
     const listOfImages = document.querySelector('#imgList');
     const blurDiv = document.querySelector('#alertZone');
     const divToShowIMG = document.querySelector('#Content');
-    const imgShowedBig = document.querySelector('#Content>.imgContent')
+    // const imgShowedBig = document.querySelector('.bigMode')
 
     const render = () =>{
+        listOfImages.innerHTML = '';
         //TODO add to #imgList images 80*80
         imgDB.forEach((element)=> {
             newImg = document.createElement('img');//variant 1
@@ -47,7 +48,8 @@
             // console.log(event);
             blurDiv.classList.remove('hyde');
             divToShowIMG.classList.remove('hyde');
-            imgShowedBig.setAttribute('src', event.target.src);
+            event.target.classList.remove('imagesLine');
+            event.target.classList.add('bigMode');
             const leftButton = document.createElement("img");
             const rightButton = document.createElement("img");
             leftButton.src = './icon/prev.png';
@@ -56,14 +58,38 @@
             rightButton.classList.add('nextBtn');
             leftButton.classList.add('navBtn');
             rightButton.classList.add('navBtn');
-
             blurDiv.appendChild(leftButton);
             blurDiv.appendChild(rightButton);
+
+        } else if(event.target.classList.contains('bigMode')){
+            event.target.classList.add('imagesLine');
+            event.target.classList.remove('bigMode');
+            blurDiv.classList.add('hyde');
+            divToShowIMG.classList.add('hyde');
         } else if(event.target.classList.contains('navBtn')){
             if(event.pageX < 300){
-                console.log(imgShowedBig);
-                console.log( imgShowedBig.getAttribute('src'))
+                let temp = document.querySelector('.bigMode').previousElementSibling;
+                if (!temp){
+                    const allImg = document.querySelectorAll('.imagesLine');
+                    temp = allImg[allImg.length-1];
+                }
+                document.querySelector('.bigMode').classList.add('imagesLine');
+                document.querySelector('.bigMode').classList.remove('bigMode');
+
+                // render();
+                temp.classList.add('bigMode');
+                temp.classList.remove('imagesLine')
+            } else if(event.pageX > (window.innerWidth - 300)){
+                let temp = document.querySelector('.bigMode').nextElementSibling;
+                if (!temp) temp = document.querySelectorAll('.imagesLine')[0];
+                document.querySelector('.bigMode').classList.add('imagesLine');
+                document.querySelector('.bigMode').classList.remove('bigMode');
+
+                // render();
+                temp.classList.add('bigMode');
+                temp.classList.remove('imagesLine')
             }
+
         } else {
             blurDiv.classList.add('hyde');
             divToShowIMG.classList.add('hyde');
