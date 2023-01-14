@@ -13,16 +13,17 @@
         './img/11.jpg',
     ];
     const classForImages = 'imagesLine';
-    // const classForBlur = 'alert_zone';
-    // const classForBigImg = 'imgContent';
 
     const listOfImages = document.querySelector('#imgList');
     const blurDiv = document.querySelector('#alertZone');
     const divToShowIMG = document.querySelector('#Content');
-    // const imgShowedBig = document.querySelector('.bigMode')
 
     const render = () =>{
         listOfImages.innerHTML = '';
+        const buttonToAddImage = document.createElement('button');
+        buttonToAddImage.classList.add('addImgBtn');
+        buttonToAddImage.textContent = 'Add new image'
+        document.querySelector('body').appendChild(buttonToAddImage);
         //TODO add to #imgList images 80*80
         imgDB.forEach((element)=> {
             newImg = document.createElement('img');//variant 1
@@ -30,12 +31,6 @@
             newImg.classList.add('imagesLine');
             listOfImages.appendChild(newImg);
         });
-
-
-        // someElement.innerHTML = imgDB.map(()=>{//variant 2
-        // }).join('');
-
-        //TODO add to #imgList 'click' eventListener
     }
 
     // console.log(imgDB);
@@ -43,6 +38,9 @@
     document.addEventListener('click',(event)=>{
         // console.log(event);
         console.log(event.target);
+        if (event.target.classList.contains(addImgBtn)){
+            useModal();
+        }
 
         if (event.target.classList.contains(classForImages)) {
             // console.log(event);
@@ -60,7 +58,6 @@
             rightButton.classList.add('navBtn');
             blurDiv.appendChild(leftButton);
             blurDiv.appendChild(rightButton);
-
         } else if(event.target.classList.contains('bigMode')){
             event.target.classList.add('imagesLine');
             event.target.classList.remove('bigMode');
@@ -75,8 +72,6 @@
                 }
                 document.querySelector('.bigMode').classList.add('imagesLine');
                 document.querySelector('.bigMode').classList.remove('bigMode');
-
-                // render();
                 temp.classList.add('bigMode');
                 temp.classList.remove('imagesLine')
             } else if(event.pageX > (window.innerWidth - 300)){
@@ -84,25 +79,24 @@
                 if (!temp) temp = document.querySelectorAll('.imagesLine')[0];
                 document.querySelector('.bigMode').classList.add('imagesLine');
                 document.querySelector('.bigMode').classList.remove('bigMode');
-
-                // render();
                 temp.classList.add('bigMode');
                 temp.classList.remove('imagesLine')
             }
-
         } else {
             blurDiv.classList.add('hyde');
             divToShowIMG.classList.add('hyde');
             document.querySelector('.bigMode').classList.add('imagesLine');
             document.querySelector('.bigMode').classList.remove('bigMode');
         }
-
     });
-
-
-
-
-
-
     render();
+
+    function useModal(){
+
+
+        addNewElementToDatabase(newItem);
+    }
+    function addNewElementToDatabase(itemToAdd){
+
+    }
 })()

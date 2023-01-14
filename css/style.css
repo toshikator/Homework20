@@ -71,6 +71,17 @@
 .nextBtn{
     right: 2vw;
 }
+.addImgBtn{
+    color: crimson;
+    background-color: lightgray;
+    font-weight: bold;
+    border-radius: 8px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 88px;
+    height: 44px;
+}
 
 .bigMode{
     position: fixed;
